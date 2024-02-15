@@ -1,0 +1,25 @@
+[
+
+        {
+            "id": "12",
+            "Name": "Jacket",
+            "Description": "Create Art Everyday",
+           "image": "image/clothing1.jpg",
+            "price": 250
+        },
+        {
+            "id": "14",
+            "Name": "T-Shirt",
+            "Description": "Dream believe achieve succeed repeat",
+            "image": "image/tshirt2.jpg",
+            "price": 230
+        },
+        {
+            "id": "15",
+            "Name": "T-Shirt",
+            "Description": "Quit talking and Begin doing",
+           "image": "image/cloth3.jpg",
+            "price": 230
+        }
+
+    ]
