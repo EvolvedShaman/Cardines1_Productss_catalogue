@@ -1,21 +1,31 @@
-fetch('data.json')
-  .then(response => response.json())
+const url = 'data.json';
 
-  .then(data => {
-    const productListElement = document.getElementById("productlist");
-    data.forEach(product => {
-      const productItem = document.createElement("div");
+fetch(url)
+  .then((response) => response.json())
+  .then((data) => {
+    let productsHtml = '';
+    data.forEach((product) => {
+      productsHtml += `
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="${product.image}" alt="${product.name}">
+          <div class="card-body">
+            <h5 class="card-title">${product.name}</h5>
+            <p class="card-text">Price: $${product.price}</p>
+            <p class="card-text">Description: ${product.description}</p>
+            <button type="button" class="btn btn-primary add-to-cart" data-id="${product.id}">Add to Cart</button>
+          </div>
+        </div>`;
+    });
+    document.getElementById('products').innerHTML = productsHtml;
 
-        var li = document.createElement('li');
-
-        li.innerHTML = '<div class="card mt-1">'+
-        '<div class="product-1 align-items-center p-2 text-center"> <img src="'+data.image+'" class="rounded"  width="150" height="100">'+
-        '<h6 class="mt-0 font-weight-bold mb-2 info">'+data.Name+'</h6>'+
-        '<div class="mt-3 info"> <span class="text1 d-block">'+ data.description+'</span> </div>'+
-        'div class="cost mt-1 text-dark"> <span>$' +data.price+'</span>'+
-        '</div>'+
-        '<div class="button-color p-2 text-center text-white"><span class="text-uppercase">Add to cart</span></div>'+
-        '</div>';
-        document.getElementsById("home_product").appendChild(li);
-    })
+    // Add event listener for add to cart button
+    document.querySelectorAll('.add-to-cart').forEach((button) => {
+      button.addEventListener('click', (event) => {
+        const productId = event.target.dataset.id;
+        console.log(Added.product.with.id ,{productId},to.cart);
+      });
+    });
   })
+  .catch((error) => {
+    console.error('Error fetching ', error);
+  });
