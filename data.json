@@ -1,8 +1,25 @@
-[
 {
-    "product_id": 1,
-    "product_name": "Product Title 1",
-    "product_description": "Product Description 1",
-    "product_price": 20123
+  "products": [
+    {
+      "id": 1,
+      "name": "Tshirt",
+      "description": "Description of Product 1",
+      "price": 223,
+      "image": "images/tshirt2.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Product 2",
+      "description": "Description of Product 2",
+      "price": 250,
+      "image": "images/clothing1.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Product 2",
+      "description": "Description of Product 2",
+      "price": 223,
+      "image": "images/cloth3.jpg"
+    }
+  ]
 }
-]

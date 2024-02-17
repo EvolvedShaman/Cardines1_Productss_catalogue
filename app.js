@@ -1,31 +1,37 @@
-const url = 'data.json';
+// Fetch data from data.json
+fetch('data.json')
+    .then(response => response.json())
+    .then(data => {
+        const productList = document.getElementById('product-list');
 
-fetch(url)
-  .then((response) => response.json())
-  .then((data) => {
-    let productsHtml = '';
-    data.forEach((product) => {
-      productsHtml += `
-        <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="${product.image}" alt="${product.name}">
-          <div class="card-body">
-            <h5 class="card-title">${product.name}</h5>
-            <p class="card-text">Price: $${product.price}</p>
-            <p class="card-text">Description: ${product.description}</p>
-            <button type="button" class="btn btn-primary add-to-cart" data-id="${product.id}">Add to Cart</button>
-          </div>
-        </div>`;
-    });
-    document.getElementById('products').innerHTML = productsHtml;
+        // Loop through each product in the JSON data
+        (data?.products || []).forEach(product => {
+            // Create a card element for each product
+            const card = document.createElement('div');
+            card.classList.add('col-lg-4', 'col-md-6', 'mb-4');
 
-    // Add event listener for add to cart button
-    document.querySelectorAll('.add-to-cart').forEach((button) => {
-      button.addEventListener('click', (event) => {
-        const productId = event.target.dataset.id;
-        console.log(Added.product.with.id ,{productId},to.cart);
-      });
-    });
-  })
-  .catch((error) => {
-    console.error('Error fetching ', error);
-  });
+            // Construct card HTML
+            card.innerHTML = `
+                <div class="card">
+                    <img src="${product.image}" class="card-img-top" alt="${product.name}">
+                    <div class="card-body">
+                        <h5 class="card-title">${product.name}</h5>
+                        <p class="card-text">${product.description}</p>
+                        <p class="card-text"><strong>Price:</strong> $${product.price}</p>
+                        <button class="btn btn-primary" id="addToCartBtn${product.id}" onclick="addToCart('${product.id}')">Add to Cart</button>
+            <span id="clickCount${product.id}">0</span> Clicks
+                    </div>
+                </div>
+            `;
+
+            // Append card to the product list
+            productList.appendChild(card);
+        });
+    })
+    .catch(error => console.error('', error));
+
+    function addToCart(productId) {
+        let clickCount = parseInt(document.getElementById(`clickCount${productId}`).innerText);
+        clickCount++;
+        document.getElementById(`clickCount${productId}`).innerText = clickCount;
+      }
