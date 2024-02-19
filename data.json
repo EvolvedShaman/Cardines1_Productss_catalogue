@@ -9,14 +9,14 @@
     },
     {
       "id": 2,
-      "name": "Product 2",
+      "name": "Jacket",
       "description": "Motivitional Cloth",
       "price": 250,
       "image": "images/clothing1.jpg"
     },
     {
       "id": 3,
-      "name": "Product 2",
+      "name": "T-shirt W&B",
       "description": "Motivitional T-shirt",
       "price": 223,
       "image": "images/cloth3.jpg"
